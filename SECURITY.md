@@ -7,8 +7,8 @@ handling, or Supabase Row Level Security — please report it responsibly.
 
 **Do not open a public GitHub issue for security vulnerabilities.**
 
-Instead, email the maintainers or use GitHub's private vulnerability reporting
-feature once the repository is published.
+Instead, use [GitHub Private Vulnerability Reporting](https://github.com/PetrStichauer/cleardeck/security/advisories/new)
+or open a security advisory from the repository **Security** tab.
 
 Include:
 
