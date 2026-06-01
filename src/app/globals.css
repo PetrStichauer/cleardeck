@@ -1,0 +1,419 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS – Light Mode
+   ============================================================ */
+:root {
+  /* Core surfaces */
+  --background: #fafafa;
+  --foreground: #1a1a1e;
+  --card-bg: #ffffff;
+
+  /* Sidebar – neutral, not purple-tinted */
+  --sidebar-bg: #f5f5f7;
+  --sidebar-border: #e5e5ea;
+  --sidebar-text: #3c3c43;
+
+  /* Accent colors – purple stays for interactive elements only */
+  --accent-primary: #7c3aed;
+  --accent-primary-hover: #6d28d9;
+  --accent-primary-light: rgba(124, 58, 237, 0.09);
+  --accent-secondary: #3b82f6;
+  --accent-secondary-light: rgba(59, 130, 246, 0.09);
+  --sidebar-active: #7c3aed;
+
+  /* Semantic */
+  --border-color: #e5e5ea;
+  --muted-text: #8e8e93;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --accent-blue: #3b82f6;
+
+  /* Glassmorphism – neutral */
+  --glass-bg: rgba(245, 245, 247, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+  --gradient-header: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
+
+  /* Shadows – neutral */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   DESIGN TOKENS – Dark Mode
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1c1c1e;
+    --foreground: #f2f2f7;
+    --card-bg: #2c2c2e;
+    --sidebar-bg: #1c1c1e;
+    --sidebar-border: #3a3a3c;
+    --sidebar-text: #ebebf5;
+    --sidebar-active: #7c3aed;
+    --border-color: #3a3a3c;
+    --muted-text: #8e8e93;
+    --accent-red: #f87171;
+    --accent-orange: #fb923c;
+    --accent-blue: #60a5fa;
+    --glass-bg: rgba(28, 28, 30, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+}
+
+.dark {
+  --background: #1c1c1e;
+  --foreground: #f2f2f7;
+  --card-bg: #2c2c2e;
+  --sidebar-bg: #1c1c1e;
+  --sidebar-border: #3a3a3c;
+  --sidebar-text: #ebebf5;
+  --sidebar-active: #7c3aed;
+  --border-color: #3a3a3c;
+  --muted-text: #8e8e93;
+  --accent-red: #f87171;
+  --accent-orange: #fb923c;
+  --accent-blue: #60a5fa;
+  --glass-bg: rgba(28, 28, 30, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-text);
+}
+
+/* ============================================================
+   TIPTAP EDITOR
+   ============================================================ */
+.ProseMirror {
+  outline: none;
+  min-height: 80px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.ProseMirror p {
+  margin: 0 0 8px 0;
+}
+.ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--muted-text);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   FOCUS RING
+   ============================================================ */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   GLASSMORPHISM SIDEBAR
+   ============================================================ */
+.sidebar-glass {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+/* ============================================================
+   SIDEBAR NAV ITEMS – purple theme
+   ============================================================ */
+.sidebar-nav-item {
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+.sidebar-nav-item:hover:not(.active) {
+  background: var(--accent-primary-light) !important;
+  color: var(--accent-primary) !important;
+}
+.sidebar-nav-item.active {
+  background: var(--gradient-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35) !important;
+}
+.sidebar-nav-item.active svg {
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   RESPONSIVE APP SHELL – 3 breakpoints
+   ============================================================ */
+
+/* Mobile: collapse sidebar to 0px, show bottom tab bar */
+@media (max-width: 767px) {
+  .app-shell {
+    grid-template-columns: 0px 1fr 0px !important;
+    height: 100dvh !important;
+  }
+  /* Keep sidebar as grid item (0px wide) so main stays in the correct 1fr column.
+     Using display:none would remove it from grid flow, pushing main into 0px column. */
+  .app-shell > aside.sidebar-panel {
+    overflow: hidden !important;
+    min-width: 0 !important;
+    visibility: hidden;
+  }
+  .app-shell > main {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  }
+  .bottom-tab-bar {
+    display: flex !important;
+  }
+}
+
+/* Tablet: narrower sidebar, no inspector */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-shell {
+    grid-template-columns: 200px 1fr 0px !important;
+  }
+  .bottom-tab-bar {
+    display: none !important;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .bottom-tab-bar {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   BOTTOM TAB BAR
+   ============================================================ */
+.bottom-tab-bar {
+  display: none; /* shown via media query above */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(60px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--glass-border);
+  z-index: 50;
+  align-items: stretch;
+}
+
+/* ============================================================
+   INSPECTOR PANEL – bottom sheet on mobile
+   ============================================================ */
+@media (max-width: 767px) {
+  .inspector-panel {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    height: 88dvh !important;
+    border-radius: 20px 20px 0 0 !important;
+    border-left: none !important;
+    border-top: 1px solid var(--glass-border) !important;
+    z-index: 200 !important;
+    box-shadow: var(--shadow-lg) !important;
+  }
+  .inspector-drag-handle {
+    display: block !important;
+  }
+  .inspector-mobile-backdrop {
+    display: block !important;
+  }
+}
+
+.inspector-drag-handle {
+  display: none;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-color);
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+}
+.inspector-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 199;
+}
+
+/* ============================================================
+   MOBILE SIDEBAR SHEET
+   ============================================================ */
+.mobile-sheet-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 150;
+}
+.mobile-sheet-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  z-index: 160;
+  background: var(--sidebar-bg);
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+}
+.mobile-sheet-panel.open {
+  transform: translateX(0);
+}
+@media (max-width: 767px) {
+  .mobile-sheet-backdrop {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-sheet-panel,
+  .mobile-sheet-backdrop {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   TASK ROW – card style on mobile
+   ============================================================ */
+@media (max-width: 767px) {
+  .task-row {
+    margin: 3px 8px !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    min-height: 52px !important;
+    padding: 10px 14px !important;
+    background: var(--card-bg) !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+  .task-row:last-child {
+    border-bottom: 1px solid var(--border-color) !important;
+  }
+}
+
+/* ============================================================
+   PROJECTS PAGE – mobile list/detail navigation
+   ============================================================ */
+.mobile-back-btn {
+  display: none;
+}
+@media (max-width: 767px) {
+  .projects-list-panel {
+    width: 100% !important;
+    border-right: none !important;
+  }
+  .projects-task-panel {
+    display: none !important;
+  }
+  .projects-list-panel.has-selection {
+    display: none !important;
+  }
+  .projects-task-panel.has-selection {
+    display: flex !important;
+  }
+  .mobile-back-btn {
+    display: flex !important;
+  }
+}
+
+/* ============================================================
+   QUICK ENTRY – full width on mobile
+   ============================================================ */
+@media (max-width: 767px) {
+  .quick-entry-modal {
+    width: calc(100vw - 20px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    top: 10px !important;
+    border-radius: 18px !important;
+  }
+}
+
+/* ============================================================
+   PAGE HEADER – gradient accent
+   ============================================================ */
+.page-header {
+  background: var(--gradient-header);
+}
+
+/* ============================================================
+   GRADIENT BUTTON UTILITY
+   ============================================================ */
+.btn-gradient {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  transition: opacity 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+.btn-gradient:hover {
+  opacity: 0.92;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+.btn-gradient:active {
+  transform: scale(0.97);
+}
