@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PetrStichauer/cleardeck.git"
+  },
   "description": "Clear your deck. Ship your work. — A GTD-inspired task manager.",
   "scripts": {
     "dev": "node node_modules/next/dist/bin/next dev",

@@ -137,7 +137,7 @@ export default function LandingPage() {
               Get Started Free
             </Link>
             <a
-              href="https://github.com/cleardeck/cleardeck"
+              href="https://github.com/PetrStichauer/cleardeck"
               target="_blank"
               rel="noopener noreferrer"
               style={{

@@ -27,7 +27,7 @@ ClearDeck is a self-hostable, GTD-inspired task manager built with Next.js and S
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/YOUR_USER/cleardeck.git
+git clone https://github.com/PetrStichauer/cleardeck.git
 cd cleardeck
 npm install
 ```
@@ -63,7 +63,7 @@ Open [http://localhost:3000](http://localhost:3000), create an account at `/sign
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 4. Deploy — then run the Supabase migration if you haven't already
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USER/cleardeck&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY&envDescription=Supabase%20credentials&project-name=cleardeck)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/PetrStichauer/cleardeck&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY&envDescription=Supabase%20credentials&project-name=cleardeck)
 
 ## Development
 
