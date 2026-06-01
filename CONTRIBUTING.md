@@ -26,13 +26,13 @@ Ensure your changes:
 
 ## Pull Request Process
 
-1. Open a PR against `main` — direct pushes to `main` are blocked by branch protection
+1. Open a PR against `main` (recommended for all changes)
 2. Fill out the PR template
 3. Link any related issues
-4. Wait for the **CI / build** check to pass (required before merge)
+4. Wait for the **build** CI check to pass (required before merge)
 5. A maintainer will review and merge
 
-> **Note:** `main` is protected — force pushes and branch deletion are disabled, and all merges require a passing CI run.
+> **Note:** `main` is protected — force pushes and branch deletion are disabled, and merges require a passing CI run.
 
 ## Architecture
 
